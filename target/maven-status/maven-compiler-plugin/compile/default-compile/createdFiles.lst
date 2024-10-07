@@ -1,0 +1,7 @@
+com/rosed/combatTPA/CombatPlayer.class
+com/rosed/combatTPA/PlayerManager.class
+com/rosed/combatTPA/CombatTPA.class
+com/rosed/combatTPA/Request.class
+com/rosed/combatTPA/Commands/RequestTP.class
+com/rosed/combatTPA/Commands/AcceptTP.class
+com/rosed/combatTPA/Commands/DenyTP.class
