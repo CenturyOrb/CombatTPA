@@ -13,11 +13,15 @@ public class Request {
     public Request(Player requester, Player receiver, CombatTPA combatTPA) {
         this.requester = requester;
         this.receiver = receiver;
-        receiver.sendMessage(ChatColor.GOLD + "Request from " + requester.getName());
+        receiver.sendMessage(ChatColor.GOLD + "Teleport request from " + ChatColor.LIGHT_PURPLE + requester.getName());
+        requester.sendMessage(ChatColor.GOLD + "Teleport request sent to " + ChatColor.LIGHT_PURPLE + receiver.getName());
 
         Bukkit.getScheduler().runTaskLater(combatTPA, () -> {
-            deny();
-            receiver.sendMessage(ChatColor.RED + "Request from " + requester.getName() + " has been expired");
+            if (!isDenied) {
+                deny();
+                receiver.sendMessage(ChatColor.RED + "Teleport request from " + ChatColor.LIGHT_PURPLE + requester.getName() + ChatColor.RED + " has been expired");
+                requester.sendMessage(ChatColor.RED + "Teleport request to " + ChatColor.LIGHT_PURPLE + receiver.getName() + ChatColor.RED + " has been expired");
+            }
         }, 600);
     }
 

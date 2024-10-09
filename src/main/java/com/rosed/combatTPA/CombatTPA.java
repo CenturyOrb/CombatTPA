@@ -13,7 +13,7 @@ public final class CombatTPA extends JavaPlugin {
 
         getCommand("tpa").setExecutor(new RequestTP(this));
         getCommand("tpdeny").setExecutor(new DenyTP());
-        getCommand("tpaccept").setExecutor(new AcceptTP());
+        getCommand("tpaccept").setExecutor(new AcceptTP(this));
 
         this.getLogger().warning("test");
     }

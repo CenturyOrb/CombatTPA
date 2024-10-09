@@ -4,6 +4,7 @@ import com.rosed.combatTPA.CombatTPA;
 import com.rosed.combatTPA.PlayerManager;
 import com.rosed.combatTPA.Request;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,7 +31,6 @@ public class RequestTP implements CommandExecutor {
         receiver = Bukkit.getPlayerExact(strings[0]);
 
         PlayerManager.INSTANCE.getPlayer(receiver).setRequest(new Request(requester, receiver, combatTPA));
-
         return false;
     }
 
