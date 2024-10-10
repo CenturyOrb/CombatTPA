@@ -6,7 +6,7 @@ import revxrsal.commands.annotation.Command;
 
 public class DenyTP {
 
-    @Command("tpaccept")
+    @Command("tpdeny")
     public void denyTeleport(Player commandSender) {
         PlayerManager.INSTANCE.getPlayer(commandSender).denyTPA();
     }

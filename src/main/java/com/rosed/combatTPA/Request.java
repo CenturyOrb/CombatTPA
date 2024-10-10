@@ -13,20 +13,19 @@ public class Request {
     public Request(Player requester, Player receiver) {
         this.requester = requester;
         this.receiver = receiver;
-        receiver.sendMessage("tp req from " + requester.getName());
-        requester.sendMessage("tp req to " + receiver.getName());
+        receiver.sendMessage(ChatColor.GOLD + "Teleport request sent from " + ChatColor.LIGHT_PURPLE + requester.getName());
+        requester.sendMessage(ChatColor.GOLD + "Teleport request sent to " + ChatColor.LIGHT_PURPLE + receiver.getName());
 
         // receiver doesn't accept the request in 30s
         Bukkit.getScheduler().runTaskLater(CombatTPA.getInstance(), () -> {
             if (!isDenied) {
-                System.out.println("3");
                 deny();
             }
         }, 600);
     }
 
     public void deny() {
-        requester.sendMessage("Request denied");
+        requester.sendMessage(ChatColor.RED + "Request has been denied");
         isDenied = true;
     }
 

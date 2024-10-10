@@ -1,6 +1,7 @@
 package com.rosed.combatTPA;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -28,6 +29,8 @@ public class CombatPlayer {
     public void acceptTPA() {
         if (request == null) return;
 
+        player.sendMessage(ChatColor.GOLD + "Remain still for 10 seconds");
+        request.getRequester().sendMessage(ChatColor.GOLD + "Remain still for 10 seconds");
         // check every 0.5 seconds for up to 10s if the players are standing still
         // if they are still after 10s, teleport
         new BukkitRunnable() {
@@ -42,9 +45,9 @@ public class CombatPlayer {
                     cancel();
                 }
                 // if player moves during the timer intervals
-                if (player.getLocation() != playerLoc || request.getRequester().getLocation() != requesterLoc) {
+                if (!Util.equalCord(player.getLocation(), playerLoc) ||
+                    !Util.equalCord(request.getRequester().getLocation(), requesterLoc)) {
                     request.deny();
-                    System.out.println("2");
                     cancel();
                 }
                 interval++;

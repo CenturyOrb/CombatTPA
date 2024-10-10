@@ -6,3 +6,4 @@ com/rosed/combatTPA/Request.class
 com/rosed/combatTPA/Commands/RequestTP.class
 com/rosed/combatTPA/Commands/AcceptTP.class
 com/rosed/combatTPA/Commands/DenyTP.class
+com/rosed/combatTPA/Util.class

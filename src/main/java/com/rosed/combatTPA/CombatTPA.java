@@ -22,7 +22,7 @@ public final class CombatTPA extends JavaPlugin {
         lamp.register(new AcceptTP());
         lamp.register(new RequestTP());
         lamp.register(new DenyTP());
-        this.getLogger().info("Started");
+        this.getLogger().info("Started 11");
     }
 
     public static CombatTPA getInstance() { return instance; }
