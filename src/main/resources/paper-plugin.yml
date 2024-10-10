@@ -1,0 +1,4 @@
+name: Combat-TPA
+version: '1.0-SNAPSHOT'
+main: com.rosed.combatTPA.CombatTPA
+api-version: '1.20'

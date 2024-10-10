@@ -10,22 +10,25 @@ public class Request {
     private final Player receiver;
     private boolean isDenied;
 
-    public Request(Player requester, Player receiver, CombatTPA combatTPA) {
+    public Request(Player requester, Player receiver) {
         this.requester = requester;
         this.receiver = receiver;
-        receiver.sendMessage(ChatColor.GOLD + "Teleport request from " + ChatColor.LIGHT_PURPLE + requester.getName());
-        requester.sendMessage(ChatColor.GOLD + "Teleport request sent to " + ChatColor.LIGHT_PURPLE + receiver.getName());
+        receiver.sendMessage("tp req from " + requester.getName());
+        requester.sendMessage("tp req to " + receiver.getName());
 
-        Bukkit.getScheduler().runTaskLater(combatTPA, () -> {
+        // receiver doesn't accept the request in 30s
+        Bukkit.getScheduler().runTaskLater(CombatTPA.getInstance(), () -> {
             if (!isDenied) {
+                System.out.println("3");
                 deny();
-                receiver.sendMessage(ChatColor.RED + "Teleport request from " + ChatColor.LIGHT_PURPLE + requester.getName() + ChatColor.RED + " has been expired");
-                requester.sendMessage(ChatColor.RED + "Teleport request to " + ChatColor.LIGHT_PURPLE + receiver.getName() + ChatColor.RED + " has been expired");
             }
         }, 600);
     }
 
-    public void deny() { isDenied = true; }
+    public void deny() {
+        requester.sendMessage("Request denied");
+        isDenied = true;
+    }
 
     public void accept() {
         if (!isDenied) {
@@ -33,4 +36,7 @@ public class Request {
             isDenied = true;
         }
     }
+
+    public Player getRequester() { return requester; }
+    public boolean isDenied() { return isDenied; }
 }
