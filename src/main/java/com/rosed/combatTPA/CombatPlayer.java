@@ -41,7 +41,6 @@ public class CombatPlayer {
             public void run() {
                 // timer hits 10s
                 if (interval > 19) {
-                    request.accept();
                     cancel();
                 }
                 // if player moves during the timer intervals
@@ -49,10 +48,12 @@ public class CombatPlayer {
                     !Util.equalCord(request.getRequester().getLocation(), requesterLoc)) {
                     request.deny();
                     cancel();
+                    return;
                 }
                 interval++;
             }
         }.runTaskTimer(CombatTPA.getInstance(), 0, 10L);
+        request.accept();
     }
 
     // Setters and getters
