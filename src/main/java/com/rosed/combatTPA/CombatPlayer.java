@@ -27,7 +27,7 @@ public class CombatPlayer {
      * from both players
      */
     public void acceptTPA() {
-        if (request == null) return;
+        if (request == null || request.isDenied()) return;
 
         player.sendMessage(ChatColor.GOLD + "Remain still for 10 seconds");
         request.getRequester().sendMessage(ChatColor.GOLD + "Remain still for 10 seconds");
@@ -39,21 +39,22 @@ public class CombatPlayer {
             final Location requesterLoc = request.getRequester().getLocation();
             @Override
             public void run() {
-                // timer hits 10s
-                if (interval > 19) {
-                    cancel();
-                }
                 // if player moves during the timer intervals
                 if (!Util.equalCord(player.getLocation(), playerLoc) ||
-                    !Util.equalCord(request.getRequester().getLocation(), requesterLoc)) {
+                        !Util.equalCord(request.getRequester().getLocation(), requesterLoc)) {
                     request.deny();
                     cancel();
                     return;
                 }
+
+                // timer hits 10s
+                if (interval > 19) {
+                    request.accept();
+                    cancel();
+                }
                 interval++;
             }
         }.runTaskTimer(CombatTPA.getInstance(), 0, 10L);
-        request.accept();
     }
 
     // Setters and getters

@@ -25,7 +25,8 @@ public class Request {
     }
 
     public void deny() {
-        requester.sendMessage(ChatColor.RED + "Request has been denied");
+        requester.sendMessage(ChatColor.RED + "Request has been canceled");
+        receiver.sendMessage(ChatColor.RED + "Request has been canceled");
         isDenied = true;
     }
 
